@@ -13,23 +13,34 @@ If you are developing a production application, we recommend using TypeScript an
 
 # avvikssystem-frontend
 
-# Avvikssystem – Frontend
+# 🛠️ Avvikssystem – Frontend
 
 Dette er frontend-delen av hovedprosjektet ved Gokstad Akademiet.  
-Laget med React og Tailwind CSS. Formålet er å registrere skademeldinger, pasienthendelser og forbedringsforslag via et enkelt og brukervennlig grensesnitt.
+Bygget med **React** og **Tailwind CSS**.  
+Systemet brukes til å registrere:
 
-## 📦 Innhold
+- Skademeldinger (personale)
+- Pasienthendelser
+- Forbedringsforslag
 
-- ✅ Innloggingsside
-- ✅ Hovedmeny
-- ✅ Skademelding-skjema (wizard)
-- ✅ Pasienthendelse-skjema
-- ✅ Forbedringsforslag-skjema
-- ✅ Takk-side etter innsending
+🧾 Brukeren logger inn, fyller ut skjema (wizard), og får en takk-side etter innsending.
 
-## ⚙️ Kom i gang
+---
 
-### 1. Klon repoet
+## 🚀 Kom i gang
+
+### ✅ Krav
+
+Før du starter, må du ha installert:
+
+- [Node.js](https://nodejs.org/en/) (anbefalt versjon: 18.x eller nyere)
+- [npm](https://www.npmjs.com/) (følger med Node.js)
+- Git
+- Nettleser (f.eks. Chrome)
+
+---
+
+### 📦 1. Klon prosjektet
 
 ```bash
 git clone https://github.com/davidgoldin/avvikssystem-frontend.git
