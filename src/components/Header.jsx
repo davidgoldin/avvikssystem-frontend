@@ -1,6 +1,6 @@
 import { LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
+//Header til prosjketet med navn og logg ut funksjon lagt til
 export default function Header() {
   const navigate = useNavigate();
 

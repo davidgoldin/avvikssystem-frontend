@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
-
+//import av nødvendige funksjoner fra react til frotnend
 export default function Pasienthendelse() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -10,7 +10,7 @@ export default function Pasienthendelse() {
     beskrivelse: '',
     tiltak: '',
   });
-
+//bygging av simple funksjoner som skal brukes i frontend
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -18,12 +18,28 @@ export default function Pasienthendelse() {
       [name]: value,
     }));
   };
+//oppsetting av kommunikajson mellom innsending av data til postman i JSON form
+  const sendInn = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/pasienthendelse`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-  const sendInn = () => {
-    console.log('Sender inn pasienthendelse:', formData);
-    navigate('/takk');
+      if (!response.ok) {
+        throw new Error('Noe gikk galt ved innsending');
+      }
+
+      navigate('/takk');
+    } catch (error) {
+      console.error('Feil ved innsending:', error);
+      alert('Kunne ikke sende inn hendelsen. Sjekk om backend kjører.');
+    }
   };
-
+//oppsett av frontend visuelle ting
   return (
     <>
       <Header />

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+//import av sider og routing, med en 404 fallback dersom det mislykkes
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Skademelding from './pages/Skademelding';
@@ -18,7 +18,7 @@ function App() {
         <Route path="/forbedringsforslag" element={<Forbedringsforslag />} />
         <Route path="/takk" element={<Takk />} />
 
-        {/* 404 fallback (valgfri) */}
+        {/* 404 fallback */}
         <Route
           path="*"
           element={

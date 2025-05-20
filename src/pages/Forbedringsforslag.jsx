@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
-
+//Import av react og funksjoner som trengs
 export default function Forbedringsforslag() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -18,11 +18,27 @@ export default function Forbedringsforslag() {
     }));
   };
 
-  const sendInn = () => {
-    console.log('Sender inn forbedringsforslag:', formData);
-    navigate('/takk');
-  };
+  const sendInn = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/forbedringsforslag`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
+      if (!response.ok) {
+        throw new Error('Noe gikk galt ved innsending.');
+      }
+
+      navigate('/takk');
+    } catch (error) {
+      console.error('Feil:', error);
+      alert('Kunne ikke sende inn forslaget. Sjekk tilkobling til backend.');
+    }
+  };
+//bygging av knapper funksjoner og visuelle frontend modifikasjoner for å skape bra bruekr erfaring.
   return (
     <>
       <Header />

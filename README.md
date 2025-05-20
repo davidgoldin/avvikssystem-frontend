@@ -27,22 +27,37 @@ Systemet brukes til å registrere:
 
 ---
 
-## 🚀 Kom i gang
+### ✅ Krav for å kjøre applikasjon frontend
 
-### ✅ Krav
+Før du starter, må du ha installert følgende
 
-Før du starter, må du ha installert:
-
-- [Node.js](https://nodejs.org/en/) (anbefalt versjon: 18.x eller nyere)
+- [Node.js](https://nodejs.org/en/) versjon: 18.x
 - [npm](https://www.npmjs.com/) (følger med Node.js)
 - Git
-- Nettleser (f.eks. Chrome)
+- Nettleser for å sette opp localhost, kjører på localhost 5174 selv på frontend med Google Chrome
 
 ---
 
-### 📦 1. Klon prosjektet
+### 1. Klone prosjektet
 
 ```bash
 git clone https://github.com/davidgoldin/avvikssystem-frontend.git
 cd avvikssystem-frontend
 ```
+
+### Mappe struktur jeg bruker
+
+avvikssystem-frontend/
+├── public/ # statisk innhold
+├── src/
+│ ├── assets/ # Bilder og ikoner
+│ ├── components/ # Gjenbrukbare UI-komponenter
+│ ├── features/ # Domene funksjoner wizard og authenticator
+│ ├── pages/ # Sider på nettsiden (ruter) Så pasienthendelse, skademelding og forbedringsforslag osv.
+│ ├── services/ # API-kall og databehandling
+│ ├── styles/ # Globale CSS-filer for styling
+│ ├── utils/ # Hjelpefunksjoner
+│ └── main.tsx # Inngangspunkt
+├── .eslintrc.cjs # ESLint-konfig
+├── vite.config.ts # Vite-konfig
+└── package.json

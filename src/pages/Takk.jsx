@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import { CheckCircle } from 'lucide-react';
-
+//takk meny da fullført bruk av brukeren 
 export default function Takk() {
   const navigate = useNavigate();
-
+//returnere til bruker en takkemelding og mulighet til å returnere til hovedmenyy
   return (
     <>
       <Header />

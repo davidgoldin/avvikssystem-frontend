@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
-
+//import av nødvendige funksjoner
 export default function Skademelding() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
@@ -12,7 +12,7 @@ export default function Skademelding() {
     beskrivelse: '',
     strakstiltak: '',
   });
-
+//bygging av funksjoner som trengs for skademelding 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -23,40 +23,49 @@ export default function Skademelding() {
 
   const neste = () => setStep((s) => s + 1);
   const tilbake = () => setStep((s) => s - 1);
+//henting av json og postman sending
+  const sendInn = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/skademelding`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-  const sendInn = () => {
-    console.log('Sender inn data:', formData);
-    navigate('/takk');
+      if (!response.ok) {
+        throw new Error('Feil ved innsending');
+      }
+
+      navigate('/takk');
+    } catch (error) {
+      console.error('Feil:', error);
+      alert('Kunne ikke sende inn skjema. Prøv igjen.');
+    }
   };
-
+//visuelle frontend design 
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 pt-28">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-10">
         <div className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-2xl">
-          <div className="mb-6">
-            <button
-              onClick={() => navigate('/home')}
-              className="text-blue-600 text-sm hover:underline"
-            >
-              ← Tilbake til hovedmeny
-            </button>
-          </div>
+          <button
+            onClick={() => navigate('/home')}
+            className="text-blue-600 text-sm mb-4 hover:underline"
+          >
+            ← Tilbake til hovedmeny
+          </button>
 
-          <h1 className="text-2xl font-bold text-gray-800 mb-4">
+          <h1 className="text-3xl font-bold text-gray-800 mb-6">
             Skademelding – steg {step} av 4
           </h1>
 
-          <div className="mb-6 h-2 w-full bg-gray-200 rounded-full">
-            <div
-              className="h-full bg-blue-500 rounded-full transition-all"
-              style={{ width: `${(step / 4) * 100}%` }}
-            />
-          </div>
-
           {step === 1 && (
             <>
-              <label className="block mb-1 text-gray-700 font-medium">Arbeidssted</label>
+              <label className="block mb-1 text-gray-700 font-medium">
+                Arbeidssted
+              </label>
               <input
                 type="text"
                 name="arbeidssted"
@@ -65,7 +74,9 @@ export default function Skademelding() {
                 className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 mb-6"
               />
 
-              <label className="block mb-1 text-gray-700 font-medium">Dato for hendelsen</label>
+              <label className="block mb-1 text-gray-700 font-medium">
+                Dato for hendelsen
+              </label>
               <input
                 type="date"
                 name="dato"
@@ -78,7 +89,9 @@ export default function Skademelding() {
 
           {step === 2 && (
             <>
-              <label className="block mb-1 text-gray-700 font-medium">Hva skjedde?</label>
+              <label className="block mb-1 text-gray-700 font-medium">
+                Hva skjedde?
+              </label>
               <textarea
                 name="beskrivelse"
                 value={formData.beskrivelse}
@@ -87,7 +100,9 @@ export default function Skademelding() {
                 className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 mb-6"
               />
 
-              <label className="block mb-1 text-gray-700 font-medium">Alvorlighetsgrad</label>
+              <label className="block mb-1 text-gray-700 font-medium">
+                Alvorlighetsgrad
+              </label>
               <select
                 name="alvorlighetsgrad"
                 value={formData.alvorlighetsgrad}
@@ -104,7 +119,9 @@ export default function Skademelding() {
 
           {step === 3 && (
             <>
-              <label className="block mb-1 text-gray-700 font-medium">Strakstiltak</label>
+              <label className="block mb-1 text-gray-700 font-medium">
+                Strakstiltak
+              </label>
               <input
                 type="text"
                 name="strakstiltak"
@@ -117,7 +134,9 @@ export default function Skademelding() {
 
           {step === 4 && (
             <>
-              <h2 className="text-xl font-semibold text-gray-700 mb-4">Forhåndsvisning</h2>
+              <h2 className="text-xl font-semibold text-gray-700 mb-4">
+                Forhåndsvisning
+              </h2>
               <ul className="space-y-2 text-gray-700">
                 <li><strong>Arbeidssted:</strong> {formData.arbeidssted}</li>
                 <li><strong>Dato:</strong> {formData.dato}</li>
